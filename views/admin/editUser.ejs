@@ -1,0 +1,33 @@
+<% include('../layouts/header.ejs')  %>
+
+<h1>edit User</h1>
+
+<% if(typeof message !== 'undefined'){%>
+    <p style="color: red;">
+        <%= message %>
+    </p>
+        <%}%>
+
+<form action="/admin/edit-user" method="post">
+   
+    <input type="name" name="name" placeholder="Enter name" value="<%=user.name %>" required>
+    <br>
+    <br>
+    <input type="email" name="email" placeholder="Enter email" value="<%=user.email %>" required>
+<br><br>
+<input type="mobile" name="mobile" placeholder="Enter mobile" value="<%=user.mobile %>" required>
+<br><br>
+<label>verified</label>
+    <input type="radio" name="verify" value="1" <% if(user.is_verified == 1){ %> checked <% } %> >
+<label>unverified</label>
+    <input type="radio" name="verify" value="0" <% if(user.is_verified == 0){ %> checked <% } %>>
+<br><br>
+<input type="hidden" name="id" value="<%= user._id %>">
+<input type="submit" value="update User">
+</form>
+
+<a href="/admin/">Go Dashboard</a>
+
+
+
+<% include('../layouts/footer.ejs')  %>
